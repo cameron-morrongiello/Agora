@@ -40,7 +40,7 @@ export class Login extends React.Component{
             password: this.state.password
           };
 
-        axios.post('http://localhost:5000/login', User)
+        axios.post('https://agora-123.herokuapp.com/login', User)
         .then(res => {
             if (res.status === 200){
                 this.props.setCurrentUser("token", res.data.token);
