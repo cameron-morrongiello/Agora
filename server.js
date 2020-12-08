@@ -40,7 +40,7 @@ mongoose.connect(config.URI)
 app.use(passport.initialize());
 
 // Pass in global config for passport
-require('../config/passport.js')(passport);
+require('./config/passport.js')(passport);
 
 // Router for everything
 app.use('/', Router);
