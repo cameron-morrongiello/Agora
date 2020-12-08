@@ -45,18 +45,13 @@ require('../config/passport.js')(passport);
 // Router for everything
 app.use('/', Router);
 
-// app.use(express.static(path.join(__dirname, '../build')))
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../build'))
-// })
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('../client/build'));
 
-if (process.env.NODE_ENV === "production") {
-  console.log("hi", __dirname);
-  app.use(express.static(path.join(__dirname, "./client/build"));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
 }
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
 
 app.listen(process.env.PORT || 5000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
