@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const Router = require('./Router.js');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 // const webpack = require('webpack');
 // const configWebpack = require('./webpack.config.dev');
 
@@ -43,6 +44,13 @@ require('../config/passport.js')(passport);
 
 // Router for everything
 app.use('/', Router);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 app.listen(process.env.PORT || 5000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
