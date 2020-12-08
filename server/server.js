@@ -45,8 +45,14 @@ require('../config/passport.js')(passport);
 // Router for everything
 app.use('/', Router);
 
+// app.use(express.static(path.join(__dirname, '../build')))
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../build'))
+// })
+
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  console.log("hi", __dirname);
+  app.use(express.static(path.join(__dirname, "./client/build"));
 }
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
