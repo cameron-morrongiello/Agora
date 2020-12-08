@@ -27,7 +27,7 @@ export class Profile extends Component {
     this.setState({currentUser : this.props.currentUser.data})
 
     try {
-      Axios.get(`http://localhost:5000/getPostByUser/${this.props.currentUser.data.data.username}`)
+      Axios.get(`https://agora-123.herokuapp.com/${this.props.currentUser.data.data.username}`)
       .then(res => {
       this.setState({userPost : res.data})
       })
@@ -44,7 +44,7 @@ export class Profile extends Component {
       return (
         <div className="Profile" >
         <div className = "Profile-header">
-            <Image className="Profile-icon" src={`http://localhost:5000/${this.props.currentUser.data.data.profilePicture}`} roundedCircle />
+            <Image className="Profile-icon" src={`https://agora-123.herokuapp.com/${this.props.currentUser.data.data.profilePicture}`} roundedCircle />
         </div>
     <Container className="Profile-details">
         <Row>
@@ -108,7 +108,7 @@ export class Profile extends Component {
           this.state.userPost.map( (post) => {
               return(
                 <Card style={{flex: 0}}>
-                  <Card.Img variant="top" src={`http://localhost:5000/${post.postMediaFilePath}`} />
+                  <Card.Img variant="top" src={`https://agora-123.herokuapp.com/${post.postMediaFilePath}`} />
                   <Card.Body>
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>
