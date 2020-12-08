@@ -27,7 +27,7 @@ export class Profile extends Component {
     this.setState({currentUser : this.props.currentUser.data})
 
     try {
-      Axios.get(`https://agora-123.herokuapp.com/${this.props.currentUser.data.data.username}`)
+      Axios.get(`https://agora-123.herokuapp.com/getPostByUser/${this.props.currentUser.data.data.username}`)
       .then(res => {
       this.setState({userPost : res.data})
       })
